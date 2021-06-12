@@ -1,38 +1,18 @@
-package it.prova.store.model;
+package it.prova.store.dto;
 
-import javax.persistence.*;
+import it.prova.store.model.ProductStore;
+
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
-@Entity
-@Table(name = "product")
-public class Product {
+public class ProductDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private Long id;
-
-    @Column(name = "description")
     private String description;
-
-    @Column(name = "price")
     private Double price;
-
-    @OneToMany(
-            mappedBy = "product"
-    )
     private List<ProductStore> stores = new ArrayList<>();
 
-    public Product() {
-    }
-
-    public Product(String description, Double price) {
-
-        this.description = description;
-        this.price = price;
+    public ProductDTO() {
     }
 
     public Long getId() {
@@ -65,5 +45,15 @@ public class Product {
 
     public void setStores(List<ProductStore> stores) {
         this.stores = stores;
+    }
+
+    @Override
+    public String toString() {
+        return "ProductDTO{" +
+                "id=" + id +
+                ", description='" + description + '\'' +
+                ", price=" + price +
+                ", stores=" + stores +
+                '}';
     }
 }
